@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS - Sistema de Inteligência Policial</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="iron-man-container">
+        <!-- Fundo com scanlines -->
+        <div class="hud-background">
+            <canvas id="scanlines"></canvas>
+        </div>
+
+        <!-- Painel Superior Esquerdo - Status -->
+        <div class="hud-panel top-left">
+            <div class="panel-header">⚙️ JARVIS INTERFACE</div>
+            <div class="panel-content">
+                <div class="status-row">
+                    <div class="label">STATUS:</div>
+                    <div class="status-indicator" id="statusIndicator">● STANDBY</div>
+                </div>
+                <div class="status-row">
+                    <div class="label">COGNIÇÃO:</div>
+                    <div class="value" id="cognitionLevel">99.2%</div>
+                </div>
+                <div class="status-row">
+                    <div class="label">LATÊNCIA:</div>
+                    <div class="value" id="latency">0.0ms</div>
+                </div>
+                <div class="status-row">
+                    <div class="label">MODELO:</div>
+                    <div class="value" id="modelName">Claude Opus</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orbe Central - Holograma Animado -->
+        <div class="center-orb-container">
+            <div class="hologram" id="hologram">
+                <div class="orb-inner"></div>
+                <div class="orb-pulse"></div>
+                <div class="orb-glow"></div>
+                <div class="scan-lines-orb"></div>
+            </div>
+            <div class="orb-text" id="orbText">JARVIS</div>
+        </div>
+
+        <!-- Painel Inferior Esquerdo - Histórico de Conversa -->
+        <div class="hud-panel bottom-left">
+            <div class="panel-header">📋 HISTÓRICO</div>
+            <div class="panel-content chat-history" id="chatHistory">
+                <div class="system-message">Sistema inicializado. Pronto para processar comandos.</div>
+            </div>
+        </div>
+
+        <!-- Painel Inferior Direito - Resposta -->
+        <div class="hud-panel bottom-right">
+            <div class="panel-header">📡 RESPOSTA</div>
+            <div class="panel-content text-response" id="responsePanel">
+                Aguardando entrada de voz ou texto...
+            </div>
+        </div>
+
+        <!-- Painel Superior Direito - Análise Rápida -->
+        <div class="hud-panel top-right">
+            <div class="panel-header">🔍 ANÁLISE</div>
+            <div class="panel-content">
+                <div class="metric">
+                    <div class="metric-label">Tokens Utilizados:</div>
+                    <div class="metric-value" id="tokensUsed">0</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Conversas Processadas:</div>
+                    <div class="metric-value" id="conversationCount">0</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Tempo Total:</div>
+                    <div class="metric-value" id="totalTime">0s</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Controle -->
+        <div class="control-buttons">
+            <button class="button button-primary" id="voiceButton">
+                <span class="button-icon">🎤</span>
+                <span class="button-text">INICIAR GRAVAÇÃO</span>
+            </button>
+            <button class="button button-secondary" id="textButton">
+                <span class="button-icon">⌨️</span>
+                <span class="button-text">DIGITAÇÃO</span>
+            </button>
+            <button class="button button-danger" id="clearButton">
+                <span class="button-icon">🔄</span>
+                <span class="button-text">LIMPAR</span>
+            </button>
+        </div>
+
+        <!-- Modal de Entrada de Texto -->
+        <div class="modal" id="textModal">
+            <div class="modal-content">
+                <div class="modal-header">Digitação de Comando</div>
+                <textarea id="textInput" class="text-input" placeholder="Digite seu comando aqui..."></textarea>
+                <div class="modal-buttons">
+                    <button class="button button-primary" id="sendTextButton">Enviar</button>
+                    <button class="button button-secondary" id="closeModalButton">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicador de Carregamento -->
+        <div class="loading-indicator" id="loadingIndicator">
+            <div class="spinner"></div>
+            <div class="loading-text">Processando...</div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

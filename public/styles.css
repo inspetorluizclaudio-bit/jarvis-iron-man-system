@@ -1,0 +1,582 @@
+/* ============================================
+   JARVIS IRON MAN INTERFACE - CSS
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #00ff00;
+    --secondary-color: #00ccff;
+    --danger-color: #ff0055;
+    --dark-bg: #0a1f2e;
+    --darker-bg: #000000;
+    --text-color: #00ff00;
+    --panel-border: 2px solid #00ff00;
+    --glow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Orbitron', monospace;
+    overflow: hidden;
+}
+
+body {
+    background: radial-gradient(circle at center, var(--dark-bg) 0%, var(--darker-bg) 100%);
+}
+
+/* ============================================
+   CONTAINER PRINCIPAL
+   ============================================ */
+
+.iron-man-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+/* Efeito de scanlines */
+.hud-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+#scanlines {
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   PAINÉIS HUD
+   ============================================ */
+
+.hud-panel {
+    position: absolute;
+    border: var(--panel-border);
+    background: rgba(10, 31, 46, 0.85);
+    padding: 15px;
+    border-radius: 3px;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--glow), inset 0 0 20px rgba(0, 255, 0, 0.1);
+    font-size: 12px;
+    line-height: 1.6;
+    z-index: 10;
+}
+
+.panel-header {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+.panel-content {
+    font-size: 11px;
+    color: var(--text-color);
+}
+
+/* Painéis específicos */
+.top-left {
+    top: 20px;
+    left: 20px;
+    width: 280px;
+}
+
+.top-right {
+    top: 20px;
+    right: 20px;
+    width: 300px;
+}
+
+.bottom-left {
+    bottom: 120px;
+    left: 20px;
+    width: 350px;
+    max-height: 280px;
+}
+
+.bottom-right {
+    bottom: 120px;
+    right: 20px;
+    width: 400px;
+    max-height: 280px;
+}
+
+/* ============================================
+   ORBE CENTRAL (HOLOGRAMA)
+   ============================================ */
+
+.center-orb-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+.hologram {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    filter: drop-shadow(0 0 30px rgba(0, 255, 0, 0.6));
+}
+
+.orb-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.7) 0%, transparent 70%);
+    animation: float 4s ease-in-out infinite;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 255, 0, 0.5),
+        0 0 50px rgba(0, 255, 0, 0.3);
+}
+
+.orb-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(0, 255, 0, 0.6);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.orb-glow {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.2) 0%, transparent 70%);
+    filter: blur(20px);
+    animation: glow 3s ease-in-out infinite;
+}
+
+.scan-lines-orb {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.05) 0px,
+        rgba(0, 255, 0, 0.05) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    animation: scanMove 8s linear infinite;
+}
+
+.orb-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+    animation: textGlow 2s ease-in-out infinite;
+}
+
+/* Estado ativo da orbe */
+.hologram.speaking .orb-pulse {
+    animation: pulse 0.5s ease-in-out infinite;
+    box-shadow: 0 0 40px rgba(0, 255, 0, 1);
+}
+
+/* ============================================
+   STATUS E INDICADORES
+   ============================================ */
+
+.status-indicator {
+    color: var(--primary-color);
+    font-weight: bold;
+    animation: blink 1s infinite;
+}
+
+.status-indicator.active {
+    animation: blink 0.5s infinite;
+    color: var(--primary-color);
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.label {
+    font-weight: bold;
+    color: rgba(0, 255, 0, 0.7);
+}
+
+.value {
+    color: var(--primary-color);
+    font-family: 'Courier New', monospace;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--primary-color);
+    margin-top: 8px;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0%;
+    animation: loading 2s ease-in-out infinite;
+}
+
+/* ============================================
+   CHAT HISTORY
+   ============================================ */
+
+.chat-history {
+    overflow-y: auto;
+    max-height: 220px;
+    padding-right: 8px;
+}
+
+.chat-history::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-history::-webkit-scrollbar-track {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.system-message {
+    color: rgba(0, 255, 0, 0.6);
+    font-size: 10px;
+    margin: 5px 0;
+    font-style: italic;
+}
+
+.user-message {
+    color: var(--secondary-color);
+    margin: 8px 0;
+    padding: 5px 8px;
+    background: rgba(0, 204, 255, 0.1);
+    border-left: 2px solid var(--secondary-color);
+    border-radius: 2px;
+}
+
+.assistant-message {
+    color: var(--primary-color);
+    margin: 8px 0;
+    padding: 5px 8px;
+    background: rgba(0, 255, 0, 0.1);
+    border-left: 2px solid var(--primary-color);
+    border-radius: 2px;
+}
+
+/* ============================================
+   RESPOSTA
+   ============================================ */
+
+.text-response {
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.text-response::-webkit-scrollbar {
+    width: 6px;
+}
+
+.text-response::-webkit-scrollbar-track {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.text-response::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+/* ============================================
+   BOTÕES
+   ============================================ */
+
+.control-buttons {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 20;
+}
+
+.button {
+    padding: 12px 25px;
+    border: 2px solid var(--primary-color);
+    background: rgba(0, 255, 0, 0.1);
+    color: var(--primary-color);
+    font-family: 'Orbitron', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 2px;
+}
+
+.button:hover {
+    background: rgba(0, 255, 0, 0.3);
+    box-shadow: var(--glow), inset 0 0 15px rgba(0, 255, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.button.active {
+    background: rgba(0, 255, 0, 0.5);
+    box-shadow: var(--glow), inset 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.button-primary {
+    border-color: var(--primary-color);
+}
+
+.button-secondary {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.button-secondary:hover {
+    background: rgba(0, 204, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+}
+
+.button-danger {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+.button-danger:hover {
+    background: rgba(255, 0, 85, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+}
+
+.button-icon {
+    font-size: 14px;
+}
+
+.button-text {
+    font-size: 10px;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--dark-bg);
+    border: 2px solid var(--primary-color);
+    padding: 30px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--glow);
+}
+
+.modal-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.text-input {
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    font-family: 'Orbitron', monospace;
+    font-size: 12px;
+    padding: 10px;
+    resize: none;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.text-input:focus {
+    outline: none;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* ============================================
+   INDICADOR DE CARREGAMENTO
+   ============================================ */
+
+.loading-indicator {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 15;
+}
+
+.loading-indicator.active {
+    display: block;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 255, 0, 0.2);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+.loading-text {
+    color: var(--primary-color);
+    font-size: 12px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+/* ============================================
+   ANIMAÇÕES
+   ============================================ */
+
+@keyframes float {
+    0%, 100% { transform: translateY(-10px); }
+    50% { transform: translateY(10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes glow {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+    50% { text-shadow: 0 0 30px rgba(0, 255, 0, 1); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes loading {
+    0%, 100% { width: 0%; }
+    50% { width: 100%; }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes scanMove {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .hud-panel {
+        font-size: 10px;
+    }
+
+    .top-left, .top-right, .bottom-left, .bottom-right {
+        width: 280px;
+    }
+
+    .button {
+        padding: 10px 15px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hud-panel {
+        display: none;
+    }
+
+    .hud-panel.active {
+        display: block;
+    }
+
+    .control-buttons {
+        flex-direction: column;
+        width: 90%;
+        bottom: 10px;
+    }
+
+    .button {
+        width: 100%;
+        justify-content: center;
+    }
+}

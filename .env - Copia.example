@@ -1,0 +1,32 @@
+# ============================================
+# JARVIS IRON MAN SYSTEM - Configuração
+# ============================================
+
+# CLAUDE API
+CLAUDE_API_KEY=sk-ant-seu-api-key-aqui
+CLAUDE_MODEL=claude-opus-4-6
+CLAUDE_MAX_TOKENS=1024
+
+# ELEVENLABS API (Síntese de Voz Jarvis)
+ELEVENLABS_API_KEY=sk_seu-elevenlabs-key-aqui
+ELEVENLABS_VOICE_ID=jarvis-custom
+
+# SERVIDOR
+PORT=3001
+NODE_ENV=development
+
+# ALEXA (Opcional - para integração avançada)
+ALEXA_SKILL_ID=seu-alexa-skill-id
+ALEXA_DEVELOPER_ID=seu-developer-id
+
+# AWS (Se usar Lambda)
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=sua-access-key
+AWS_SECRET_ACCESS_KEY=sua-secret-key
+
+# DATABASE (Opcional)
+MONGODB_URI=
+DATABASE_URL=
+
+# LOGGING
+LOG_LEVEL=info
