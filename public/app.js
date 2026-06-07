@@ -6,7 +6,7 @@
 class JarvisSystem {
     constructor() {
         // Configuração
-        this.apiBaseUrl = 'http://localhost:3001';
+        this.apiBaseUrl = '';
         this.isListening = false;
         this.conversationHistory = [];
         this.totalTokens = 0;
